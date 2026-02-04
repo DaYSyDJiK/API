@@ -1,19 +1,21 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const userService = require('../services/userService');
-const userController = require('../controllers/userController');
 
-// Page d'accueil EJS
-router.get('/', async (req, res) => {
-  try {
-    const users = await userService.getAllUsers();
-    res.render('index', { users });
-  } catch (error) {
-    res.status(500).send('Erreur serveur');
-  }
+const private = require("../middlewares/private");
+
+// Accueil
+router.get("/", (req, res) => {
+  res.render("home", { error: null });
 });
 
-// Formulaire d'édition
-router.get('/:id/edit', userController.renderEditForm);
+// Docs
+router.get("/docs", (req, res) => {
+  res.send("Documentation API à venir");
+});
+
+// Dashboard protégé
+router.get("/dashboard", private, (req, res) => {
+  res.render("dashboard", { user: req.session.user });
+});
 
 module.exports = router;

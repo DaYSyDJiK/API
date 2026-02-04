@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Port de plaisance - Russell</title>
+</head>
+<body>
+  <h1>Port de plaisance de Russell</h1>
+  <p>
+  Cette application interne permet à la capitainerie de gérer les <strong>catways</strong>,
+  les <strong>réservations</strong> et les <strong>utilisateurs</strong>.
+  L'accès est réservé au personnel autorisé.
+</p>
+
+<ul>
+  <li>Créer, consulter, modifier et supprimer des catways</li>
+  <li>Créer, consulter, modifier et supprimer des réservations</li>
+  <li>Gérer les comptes utilisateurs</li>
+</ul>
+
+  <h2>Connexion</h2>
+
+  <% if (error) { %>
+    <p style="color:red;"><%= error %></p>
+  <% } %>
+
+  <form action="/login" method="POST">
+    <label>Email :</label>
+    <input type="email" name="email" required>
+    <br><br>
+
+    <label>Mot de passe :</label>
+    <input type="password" name="password" required>
+    <br><br>
+
+    <button type="submit">Se connecter</button>
+  </form>
+
+  <hr>
+
+  <a href="/docs">Voir la documentation de l'API</a>
+</body>
+</html>
