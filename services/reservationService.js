@@ -1,5 +1,11 @@
 const Reservation = require('../models/reservationModel');
 
+
+// Toutes les réservations
+exports.getAllReservations = () => {
+  return Reservation.find();
+};
+
 // Toutes les réservations d'un catway
 exports.getReservationsByCatway = (catwayNumber) => {
     return Reservation.find({ catwayNumber});

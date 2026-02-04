@@ -12,6 +12,7 @@ const authRoutes = require("./routes/authRoutes");
 const catwayRoutes = require("./routes/catwayRoutes");
 const catwayPagesRoutes = require("./routes/catwayPagesRoutes");
 const reservationRoutes = require("./routes/reservationRoutes");
+const reservationPagesRoutes = require("./routes/reservationPagesRoutes");
 
 
 const session = require("express-session");
@@ -49,6 +50,7 @@ app.use(express.static('public'));
 app.use("/", indexRouter);
 app.use("/users", userRoutes);
 app.use("/catways-page", catwayPagesRoutes);
+app.use("/reservations-page", reservationPagesRoutes);
 
 // Routes API
 app.use("/api/users", private, userRoutes);
