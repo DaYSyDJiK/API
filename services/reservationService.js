@@ -31,8 +31,6 @@ exports.updateReservation = (id, data) => {
 // Supprimer une réservation
 exports.deleteReservation = (id) => {
     return Reservation.findByIdAndDelete(id);
-<<<<<<< HEAD
+
 };
-=======
-};
->>>>>>> 97f5001 (Model + CRUD API reservation done)
+
