@@ -9,6 +9,8 @@ const app = express();
 const indexRouter = require("./routes/indexRoutes");
 const userRoutes = require('./routes/userRoutes');
 const authRoutes = require("./routes/authRoutes");
+const catwayRoutes = require("./routes/catwayRoutes");
+
 
 const session = require("express-session");
 
@@ -47,6 +49,9 @@ app.use("/users", userRoutes);
 
 // Routes API
 app.use("/api/users", private, userRoutes);
+app.use("/catways", private, catwayRoutes);
+
+
 
 // Middleware d'erreur 
 app.use((err, req, res, next) => {
