@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des utilisateurs</title>
+  <link rel="stylesheet" href="/assets/css/index.css">
+</head>
+<body>
+  <h1>Liste des utilisateurs</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% users.forEach(user => { %>
+        <tr>
+          <td><%= user.username %></td>
+          <td><%= user.email %></td>
+          <td>
+            <a href="/<%= user.id %>/edit">
+              <button>Modifier</button>
+            </a>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</body>
+</html>
