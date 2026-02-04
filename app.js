@@ -15,6 +15,7 @@ const reservationRoutes = require("./routes/reservationRoutes");
 const reservationPagesRoutes = require("./routes/reservationPagesRoutes");
 
 
+
 const session = require("express-session");
 
 // Moteur de template + dossier views

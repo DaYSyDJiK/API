@@ -6,6 +6,7 @@ exports.getAllReservations = () => {
   return Reservation.find();
 };
 
+
 // Toutes les réservations d'un catway
 exports.getReservationsByCatway = (catwayNumber) => {
     return Reservation.find({ catwayNumber});
@@ -30,4 +31,8 @@ exports.updateReservation = (id, data) => {
 // Supprimer une réservation
 exports.deleteReservation = (id) => {
     return Reservation.findByIdAndDelete(id);
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 97f5001 (Model + CRUD API reservation done)
