@@ -1,4 +1,5 @@
 const userService = require("../services/userService");
+const bcrypt = require("bcrypt");
 
 exports.getAllUsers = async (req, res) => {
   try {
@@ -21,12 +22,29 @@ exports.getUserById = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    const user = await userService.createUser(req.body);
+    const { username, email, password } = req.body;
+
+    // 1) Vérifications simples
+    if (!username || !email || !password) {
+      return res.status(400).json({ message: "username, email et password sont obligatoires" });
+    }
+
+    // 2) Hash du mot de passe
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // 3) On enregistre en base avec le hash
+    const user = await userService.createUser({
+      username,
+      email,
+      password: hashedPassword
+    });
+
     return res.status(201).json(user);
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
 };
+
 
 exports.updateUser = async (req, res) => {
   try {
