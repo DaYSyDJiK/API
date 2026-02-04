@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Modifier état</title></head>
+<body>
+  <h1>Modifier l'état du catway <%= catway.catwayNumber %></h1>
+  <a href="/catways-page">← Retour</a>
+
+  <% if (error) { %>
+    <p style="color:red;"><%= error %></p>
+  <% } %>
+
+  <p>Type : <%= catway.catwayType %></p>
+
+  <form action="/catways-page/<%= catway.catwayNumber %>/edit" method="POST">
+    <label>État :</label>
+    <input type="text" name="catwayState" value="<%= catway.catwayState %>" required>
+    <br><br>
+    <button type="submit">Enregistrer</button>
+  </form>
+</body>
+</html>

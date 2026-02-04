@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Catways</title></head>
+<body>
+  <h1>Catways</h1>
+  <p>Connecté : <%= user.username %> (<%= user.email %>)</p>
+
+  <a href="/dashboard">← Dashboard</a> | <a href="/catways-page/new">+ Créer un catway</a> | <a href="/logout">Logout</a>
+
+  <hr>
+
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>Numéro</th>
+        <th>Type</th>
+        <th>État</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% catways.forEach(c => { %>
+        <tr>
+          <td><%= c.catwayNumber %></td>
+          <td><%= c.catwayType %></td>
+          <td><%= c.catwayState %></td>
+          <td>
+            <a href="/catways-page/<%= c.catwayNumber %>/edit">Modifier état</a>
+
+            <form action="/catways-page/<%= c.catwayNumber %>/delete" method="POST" style="display:inline;">
+              <button type="submit">Supprimer</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>
