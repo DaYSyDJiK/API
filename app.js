@@ -13,7 +13,7 @@ const catwayRoutes = require("./routes/catwayRoutes");
 const catwayPagesRoutes = require("./routes/catwayPagesRoutes");
 const reservationRoutes = require("./routes/reservationRoutes");
 const reservationPagesRoutes = require("./routes/reservationPagesRoutes");
-
+const userPagesRoutes = require("./routes/userPagesRoutes");
 
 
 const session = require("express-session");
@@ -52,6 +52,7 @@ app.use("/", indexRouter);
 app.use("/users", userRoutes);
 app.use("/catways-page", catwayPagesRoutes);
 app.use("/reservations-page", reservationPagesRoutes);
+app.use("/users-page", userPagesRoutes);
 
 // Routes API
 app.use("/api/users", private, userRoutes);
