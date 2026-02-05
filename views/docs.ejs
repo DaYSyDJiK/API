@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentation API</title>
+</head>
+<body>
+  <h1>Documentation de l'API - Port de plaisance</h1>
+
+  <p>
+    Cette API permet de gérer les catways, les réservations et les utilisateurs
+    du port de plaisance de Russell.
+  </p>
+
+  <hr>
+
+  <h2>🔐 Authentification</h2>
+
+  <h3>POST /login</h3>
+  <p>Connexion d'un utilisateur.</p>
+  <pre>
+{
+  "email": "admin@test.com",
+  "password": "admin123"
+}
+  </pre>
+
+  <h3>GET /logout</h3>
+  <p>Déconnexion de l'utilisateur connecté.</p>
+
+  <hr>
+
+  <h2>👤 Utilisateurs</h2>
+
+  <h3>GET /api/users</h3>
+  <p>Récupérer la liste des utilisateurs.</p>
+
+  <h3>POST /api/users</h3>
+  <pre>
+{
+  "username": "admin",
+  "email": "admin@test.com",
+  "password": "admin123"
+}
+  </pre>
+
+  <h3>PUT /api/users/:email</h3>
+  <p>Modifier un utilisateur.</p>
+
+  <h3>DELETE /api/users/:email</h3>
+  <p>Supprimer un utilisateur.</p>
+
+  <hr>
+
+  <h2>⚓ Catways</h2>
+
+  <h3>GET /catways</h3>
+  <p>Récupérer tous les catways.</p>
+
+  <h3>POST /catways</h3>
+  <pre>
+{
+  "catwayNumber": 1,
+  "catwayType": "long",
+  "catwayState": "Bon état"
+}
+  </pre>
+
+  <h3>PUT /catways/:id</h3>
+  <p>Modifier uniquement l'état d'un catway.</p>
+
+  <h3>DELETE /catways/:id</h3>
+  <p>Supprimer un catway.</p>
+
+  <hr>
+
+  <h2>🛥 Réservations</h2>
+
+  <h3>GET /catways/:id/reservations</h3>
+  <p>Récupérer les réservations d'un catway.</p>
+
+  <h3>POST /catways/:id/reservations</h3>
+  <pre>
+{
+  "catwayNumber": 1,
+  "clientName": "Jean Dupont",
+  "boatName": "Le Titanic",
+  "startDate": "2026-02-01",
+  "endDate": "2026-02-10"
+}
+  </pre>
+
+  <h3>DELETE /catways/:id/reservations/:idReservation</h3>
+  <p>Supprimer une réservation.</p>
+
+  <hr>
+
+  <p>
+    <a href="/">← Accueil</a>
+  </p>
+</body>
+</html>
