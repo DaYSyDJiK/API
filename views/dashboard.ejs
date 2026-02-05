@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <title>Dashboard</title>
 </head>
+
 <body>
   <h1>Tableau de bord</h1>
 
   <p>
     Connecté en tant que :
-    <strong><%= user.username %></strong> — <%= user.email %>
+    <strong>
+      <%= user.username %>
+    </strong> — <%= user.email %>
   </p>
 
-  <p>Date du jour : <%= new Date().toLocaleDateString() %></p>
+  <p>Date du jour : <%= new Date().toLocaleDateString() %>
+  </p>
 
   <hr>
 
@@ -29,6 +34,43 @@
   <hr>
 
   <h2>Réservations en cours</h2>
-  <p>(À venir quand on aura créé les modèles Reservations)</p>
+
+  <% if (!currentReservations || currentReservations.length===0) { %>
+    <p>Aucune réservation en cours.</p>
+    <% } else { %>
+      <table border="1" cellpadding="6">
+        <thead>
+          <tr>
+            <th>Catway</th>
+            <th>Client</th>
+            <th>Bateau</th>
+            <th>Début</th>
+            <th>Fin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% currentReservations.forEach((r)=> { %>
+            <tr>
+              <td>
+                <%= r.catwayNumber %>
+              </td>
+              <td>
+                <%= r.clientName %>
+              </td>
+              <td>
+                <%= r.boatName %>
+              </td>
+              <td>
+                <%= new Date(r.startDate).toLocaleDateString("fr-FR") %>
+              </td>
+              <td>
+                <%= new Date(r.endDate).toLocaleDateString("fr-FR") %>
+              </td>
+            </tr>
+            <% }); %>
+        </tbody>
+      </table>
+      <% } %>
 </body>
+
 </html>

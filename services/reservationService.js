@@ -34,3 +34,12 @@ exports.deleteReservation = (id) => {
 
 };
 
+// Réservations en cours
+exports.getCurrentReservations = async () => {
+  const now = new Date();
+  return Reservation.find({
+    startDate: { $lte: now },
+    endDate: { $gte: now }
+  }).sort({ startDate: 1 });
+};
+
