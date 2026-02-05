@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Utilisateurs</title></head>
+<body>
+  <h1>Utilisateurs</h1>
+
+  <p>Connecté : <%= user.username %> (<%= user.email %>)</p>
+
+  <a href="/dashboard">← Dashboard</a>
+  | <a href="/users-page/new">+ Créer un utilisateur</a>
+  | <a href="/logout">Logout</a>
+
+  <hr>
+
+  <table border="1" cellpadding="6">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% users.forEach((u) => { %>
+        <tr>
+          <td><%= u.username %></td>
+          <td><%= u.email %></td>
+          <td>
+            <a href="/users-page/<%= u.email %>/edit">Modifier</a>
+
+            <form action="/users-page/<%= u.email %>/delete" method="POST" style="display:inline;">
+              <button type="submit" onclick="return confirm('Supprimer cet utilisateur ?');">Supprimer</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

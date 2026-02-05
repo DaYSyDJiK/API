@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><title>Modifier utilisateur</title></head>
+<body>
+  <h1>Modifier utilisateur</h1>
+  <a href="/users-page">← Retour</a>
+
+  <% if (error) { %>
+    <p style="color:red;"><%= error %></p>
+  <% } %>
+
+  <form action="/users-page/<%= userToEdit.email %>/edit" method="POST">
+    <p><strong>Email :</strong> <%= userToEdit.email %></p>
+
+    <label>Username :</label>
+    <input type="text" name="username" value="<%= userToEdit.username %>" required>
+    <br><br>
+
+    <label>Nouveau mot de passe (optionnel) :</label>
+    <input type="password" name="password">
+    <br><br>
+
+    <button type="submit">Enregistrer</button>
+  </form>
+</body>
+</html>
