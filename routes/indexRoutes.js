@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
 
 // Docs
 router.get("/docs", (req, res) => {
-  res.send("Documentation API à venir");
+  res.render("docs");
 });
 
 // Dashboard protégé
