@@ -1,0 +1,152 @@
+# Port de plaisance – Russell (API + Interface EJS)
+
+Projet pédagogique : création d’une **API privée** et d’une **interface web simple (EJS)** pour gérer les **catways**, les **réservations** et les **utilisateurs** d’un port de plaisance.
+
+---
+
+## Sommaire
+
+- [Fonctionnalités](#fonctionnalités)
+- [Technologies](#technologies)
+- [Prérequis](#prérequis)
+- [Installation et lancement en local](#installation-et-lancement-en-local)
+  - [Dépendances](#dépendances)
+  - [Variables d’environnement](#variables-denvironnement)
+  - [Lancer l’application](#lancer-lapplication)
+- [Import des données (JSON)](#import-des-données-json)
+- [Pages disponibles (EJS)](#pages-disponibles-ejs)
+- [Routes principales de l’API](#routes-principales-de-lapi)
+- [Compte de test](#compte-de-test)
+- [Déploiement (Render) – Guide débutant](#déploiement-render--guide-débutant)
+- [Notes importantes](#notes-importantes)
+
+---
+
+## Fonctionnalités
+
+- Authentification (connexion / déconnexion) via **session**
+- **Dashboard** (utilisateur connecté, date du jour, réservations en cours)
+- CRUD Catways (API + pages EJS)
+- CRUD Réservations (API + pages EJS)
+- CRUD Utilisateurs (API + pages EJS)
+- Page de documentation `/docs`
+
+---
+
+## Technologies
+
+- **Node.js** + **Express**
+- **MongoDB Atlas** + **Mongoose**
+- **EJS** (templates)
+- **express-session** (session/cookie gérés automatiquement)
+- **bcrypt** (hash des mots de passe)
+- **dotenv** (variables d’environnement)
+
+---
+
+## Prérequis
+
+- Node.js installé (idéalement version LTS)
+- Un cluster MongoDB Atlas (ou MongoDB local)
+- Git (si dépôt GitHub)
+
+---
+
+## Installation et lancement en local
+
+### 1) Cloner le projet
+
+```bash
+git clone <URL_DE_TON_REPO_GITHUB>
+cd <NOM_DU_DOSSIER>
+
+---
+
+Dépendances
+
+Installer les dépendances Node :
+
+- npm install
+
+- Les dépendances (packages) sont listées dans package.json.
+- node_modules/ n’est jamais versionné.
+
+---
+
+Variables d’environnement
+
+Créer un fichier .env à la racine du projet :
+- MONGO_URI=mongodb+srv://<user>:<password>@<cluster>/<dbName> retryWrites=true&w=majority
+- SESSION_SECRET=je_suis_dieu
+- PORT=3000
+
+---
+
+Import des données (JSON)
+
+- Les collections catways et reservations peuvent être importées via MongoDB Compass ou mongoimport.
+
+Exemple avec mongoimport
+
+- mongoimport --jsonArray --db port-plaisance --collection catways --file catways.json
+- mongoimport --jsonArray --db port-plaisance --collection reservations --file reservations.json
+
+---
+
+Pages disponibles (EJS)
+
+- / : page d’accueil + formulaire de connexion
+
+- /dashboard : tableau de bord (protégé)
+
+- /catways-page : CRUD catways (protégé)
+
+- /reservations-page : CRUD réservations (protégé)
+
+- /users-page : CRUD utilisateurs (protégé)
+
+- /docs : documentation (publique)
+
+---
+
+Routes principales de l’API
+
+- Toutes les routes API sont protégées par session (middleware private).
+
+Auth
+
+- POST /login
+- GET /logout
+
+Catways
+
+- GET /catways
+- GET /catways/:id
+- POST /catways
+- PUT /catways/:id
+- DELETE /catways/:id
+
+Réservations
+
+- GET /catways/:id/reservations
+- GET /catways/:id/reservations/:idReservation
+- POST /catways/:id/reservations
+- PUT /catways/:id/reservations/:idReservation
+- DELETE /catways/:id/reservations/:idReservation
+
+Utilisateurs
+
+- GET /api/users
+- POST /api/users
+- GET /api/users/:id
+- PUT /api/users/:id
+- DELETE /api/users/:id
+
+---
+
+Compte de test
+
+- Email : correction@test.com
+- Mot de passe : correction
+
+
