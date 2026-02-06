@@ -6,6 +6,13 @@ const router = express.Router({ mergeParams: true });
 const reservationController = require("../controllers/reservationController");
 
 
+
+/**
+ * Routes REST Reservations (sous-ressource de catways).
+ * mergeParams permet d'accéder à :id et :idReservation depuis le router parent.
+ * @module routes/reservationRoutes
+ */
+
 // GET /catways/:id/reservations
 router.get('/', reservationController.getReservationsByCatway);
 

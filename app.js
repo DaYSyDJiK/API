@@ -18,6 +18,8 @@ const userPagesRoutes = require("./routes/userPagesRoutes");
 
 const session = require("express-session");
 
+console.log("🚀 APP START FILE:", __filename);
+
 // Moteur de template + dossier views
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -26,6 +28,11 @@ app.set('views', path.join(__dirname, 'views'));
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("Connecté à MongoDB"))
 .catch((err) => console.error("Erreur MongoDB :", err));
+
+mongoose.connection.on("connected", () => {
+  console.log("✅ Mongo connected to DB:", mongoose.connection.name);
+  console.log("✅ Mongo host:", mongoose.connection.host);
+});
 
 
 // Middlewares

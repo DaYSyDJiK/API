@@ -4,6 +4,13 @@ const router = express.Router();
 const private = require("../middlewares/private");
 const reservationService = require("../services/reservationService"); 
 
+
+/**
+ * Routes pages (home, docs, dashboard).
+ * @module routes/indexRoutes
+ */
+
+
 // Accueil
 router.get("/", (req, res) => {
   res.render("home", { error: null });

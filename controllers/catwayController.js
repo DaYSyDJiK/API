@@ -1,6 +1,21 @@
+/**
+ * Contrôleur REST pour la ressource Catway.
+ * @module controllers/catwayController
+ */
+
 const catwayService = require("../services/catwayService");
 
-// GET /catways
+
+/**
+ * Récupère tous les catways.
+ * @route GET /catways
+ * @function getAllCatways
+ * @async
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ * @returns {Promise<void>} Liste JSON des catways
+ */
+
 exports.getAllCatways = async (req, res) => {
   try {
     const catways = await catwayService.getAllCatways();
@@ -10,7 +25,18 @@ exports.getAllCatways = async (req, res) => {
   }
 };
 
-// GET /catways/:id
+
+
+/**
+ * Récupère un catway par son numéro (catwayNumber).
+ * @route GET /catways/:id
+ * @function getCatwayByNumber
+ * @async
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ * @returns {Promise<void>} Catway JSON ou 404
+ */
+
 exports.getCatwayByNumber = async (req, res) => {
   try {
     const number = parseInt(req.params.id);
@@ -26,7 +52,18 @@ exports.getCatwayByNumber = async (req, res) => {
   }
 };
 
-// POST /catways
+
+
+/**
+ * Crée un catway.
+ * @route POST /catways
+ * @function createCatway
+ * @async
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ * @returns {Promise<void>} Catway créé (201) ou erreur (400/500)
+ */
+
 exports.createCatway = async (req, res) => {
   try {
     const { catwayNumber, catwayType, catwayState } = req.body;
@@ -47,7 +84,19 @@ exports.createCatway = async (req, res) => {
   }
 };
 
-// PUT /catways/:id (modifie seulement l'état)
+
+
+/**
+ * Met à jour uniquement l'état d'un catway (catwayState).
+ * Le numéro et le type ne sont pas modifiables.
+ * @route PUT /catways/:id
+ * @function updateCatwayState
+ * @async
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ * @returns {Promise<void>} Catway mis à jour ou 404
+ */
+
 exports.updateCatwayState = async (req, res) => {
   try {
     const number = parseInt(req.params.id);
@@ -69,7 +118,18 @@ exports.updateCatwayState = async (req, res) => {
   }
 };
 
-// DELETE /catways/:id
+
+
+/**
+ * Supprime un catway par son numéro.
+ * @route DELETE /catways/:id
+ * @function deleteCatway
+ * @async
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ * @returns {Promise<void>} 204 si supprimé, 404 sinon
+ */
+
 exports.deleteCatway = async (req, res) => {
   try {
     const number = parseInt(req.params.id);

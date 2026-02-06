@@ -1,7 +1,23 @@
+/**
+ * Contrôleur REST pour la ressource Reservation (sous-ressource de Catway).
+ * @module controllers/reservationController
+ */
+
 const reservationService = require("../services/reservationService");
 const catwayService = require("../services/catwayService");
 
-// GET /catways/:id/reservations
+
+
+/**
+ * Liste les réservations d'un catway.
+ * @route GET /catways/:id/reservations
+ * @function getReservationsByCatway
+ * @async
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ * @returns {Promise<void>} Liste JSON des réservations du catway
+ */
+
 exports.getReservationsByCatway = async (req, res) => {
   try {
     const catwayNumber = parseInt(req.params.id);
@@ -17,7 +33,18 @@ exports.getReservationsByCatway = async (req, res) => {
   }
 };
 
-// GET /catways/:id/reservations/:idReservation
+
+
+/**
+ * Récupère une réservation par son id Mongo.
+ * @route GET /catways/:id/reservations/:idReservation
+ * @function getReservationById
+ * @async
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ * @returns {Promise<void>} Réservation JSON ou 404
+ */
+
 exports.getReservationById = async (req, res) => {
   try {
     const { idReservation } = req.params;
@@ -33,7 +60,19 @@ exports.getReservationById = async (req, res) => {
   }
 };
 
-// POST /catways/:id/reservations
+
+
+/**
+ * Crée une réservation pour un catway donné.
+ * Valide la présence des champs et la cohérence des dates.
+ * @route POST /catways/:id/reservations
+ * @function createReservation
+ * @async
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ * @returns {Promise<void>} Réservation créée (201) ou erreur
+ */
+
 exports.createReservation = async (req, res) => {
   try {
     const catwayNumber = parseInt(req.params.id);
@@ -69,7 +108,18 @@ exports.createReservation = async (req, res) => {
   }
 };
 
-// PUT /catways/:id/reservations
+
+
+/**
+ * Met à jour une réservation par son id Mongo.
+ * @route PUT /catways/:id/reservations/:idReservation
+ * @function updateReservation
+ * @async
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ * @returns {Promise<void>} Réservation mise à jour ou 404
+ */
+
 exports.updateReservation = async (req, res) => {
   try {
     const { idReservation } = req.params;
@@ -86,7 +136,18 @@ exports.updateReservation = async (req, res) => {
   }
 };
 
-// DELETE /catways/:id/reservations/:idReservation
+
+
+/**
+ * Supprime une réservation par son id Mongo.
+ * @route DELETE /catways/:id/reservations/:idReservation
+ * @function deleteReservation
+ * @async
+ * @param {import("express").Request} req
+ * @param {import("express").Response} res
+ * @returns {Promise<void>} 204 si supprimée, 404 sinon
+ */
+
 exports.deleteReservation = async (req, res) => {
   try {
     const { idReservation } = req.params;
