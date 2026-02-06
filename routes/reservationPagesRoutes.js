@@ -5,6 +5,14 @@ const private = require("../middlewares/private");
 const reservationService = require("../services/reservationService");
 const catwayService = require("../services/catwayService");
 
+
+
+/**
+ * Routes EJS (CRUD via formulaires) protégées par session.
+ * @module routes/catwayPagesRoutes
+ */
+
+
 // LISTE
 router.get("/", private, async (req, res) => {
   const reservations = await reservationService.getAllReservations();

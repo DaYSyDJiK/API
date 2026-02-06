@@ -1,5 +1,15 @@
 const mongoose = require('mongoose');
 
+
+/**
+ * Modèle User.
+ * - username : nom utilisateur
+ * - email : unique
+ * - password : hash bcrypt
+ *
+ * @module models/userModel
+ */
+
 const userSchema = new mongoose.Schema(
   {
     username: { type: String, required: true, trim: true },

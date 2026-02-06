@@ -4,6 +4,14 @@ const router = express.Router();
 const private = require("../middlewares/private");
 const userService = require("../services/userService");
 
+
+
+/**
+ * Routes EJS (CRUD via formulaires) protégées par session.
+ * @module routes/catwayPagesRoutes
+ */
+
+
 // LISTE
 router.get("/", private, async (req, res) => {
   const users = await userService.getAllUsers();
