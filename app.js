@@ -42,9 +42,9 @@ const private = require("./middlewares/private");
 
 app.use(
   session({
-    secret: "CHANGE_MOI_EN_SECRET",
+    secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
   })
 );
 
@@ -56,7 +56,7 @@ app.use(express.static('public'));
 
 // Routes FRONT (vues)
 app.use("/", indexRouter);
-app.use("/users", userRoutes);
+// app.use("/users", userRoutes); Pour rendre l'API privée
 app.use("/catways-page", catwayPagesRoutes);
 app.use("/reservations-page", reservationPagesRoutes);
 app.use("/users-page", userPagesRoutes);
